@@ -1,0 +1,17 @@
+<!-- Navbar  -->
+<div class="navbar">
+  <div class="logo">Node Auth</div>
+  <% if(locals.user){%>
+  <div class="my-4 my-md-0">
+    <a href="/resetPassword" class="login mx-2">
+      <i class="fa-solid fa-key"></i>
+      <span class="login_span">Reset Password</span>
+    </a>
+    <a href="/logout" class="login">
+      <i class="fa-solid fa-right-to-bracket"></i>
+      <span class="login_span">Logout</span>
+    </a>
+  </div>
+
+  <% } %>
+</div>

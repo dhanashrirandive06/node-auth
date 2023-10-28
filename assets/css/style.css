@@ -1,0 +1,80 @@
+body {
+  margin: 0;
+  padding: 0;
+  /* min-height: 100vh; */
+}
+
+/* Navbar Css */
+
+.navbar {
+  padding: 1rem 2rem !important;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(6, 2, 19);
+}
+
+.logo {
+  background-color: white;
+  color: black;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login {
+  background-color: rgb(62, 62, 200);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+}
+
+/* Register page CSS */
+.register_form {
+  margin: 2rem auto;
+  width: 40%;
+  border: 1px solid rgb(216, 216, 216);
+  padding: 2rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* home Page css */
+.home {
+  color: rgb(47, 25, 113) !important;
+}
+
+/* Footer Css*/
+
+.footer {
+  width: 100%;
+  position: fixed;
+  background-color: rgb(6, 2, 19);
+  bottom: 0%;
+  color: white;
+  text-align: center;
+}
+
+/* Media Queries */
+
+@media (max-width: 992px) {
+  .register_form {
+    width: 60%;
+  }
+}
+
+@media (max-width: 778px) {
+  .register_form {
+    width: 80%;
+  }
+}
+
+@media (max-width: 576px) {
+  .register_form {
+    width: 95%;
+  }
+}
