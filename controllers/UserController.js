@@ -3,6 +3,7 @@ const bcryptjs = require("bcryptjs");
 const fetch = require("node-fetch");
 const userRegister_mailer = require("../mailers/userRegister_mailer");
 
+//Render Home Page
 module.exports.home = async (req, res) => {
   try {
     return res.render("home", {
@@ -14,6 +15,8 @@ module.exports.home = async (req, res) => {
     return;
   }
 };
+
+//Render Register Page
 module.exports.register = (req, res) => {
   if (req.isAuthenticated()) {
     return res.redirect("/home");
@@ -22,6 +25,8 @@ module.exports.register = (req, res) => {
     title: "Register",
   });
 };
+
+//Render Login Page
 module.exports.login = (req, res) => {
   if (req.isAuthenticated()) {
     return res.redirect("/home");
@@ -31,17 +36,15 @@ module.exports.login = (req, res) => {
     title: "Login",
   });
 };
-module.exports.forgotpassword = (req, res) => {
-  return res.render("forgotpassword", {
-    title: "Update Password",
-  });
-};
+
+//Render reset Password Page
 module.exports.resetPassword = (req, res) => {
   return res.render("resetPassword", {
     title: "Reset Password",
   });
 };
 
+//Create User (User Registration)
 module.exports.create = async (req, res, next) => {
   try {
     if (req.body.password != req.body.confirmPassword) {
@@ -54,6 +57,7 @@ module.exports.create = async (req, res, next) => {
       return res.redirect("back");
     }
 
+    //Verify Captach is valid or not
     const verifyCaptcha = await fetch(
       `https://www.google.com/recaptcha/api/siteverify?secret=6Le0pc8oAAAAAKc3ERemaC63ofuoQiM5_Mz_c4_l&response=${req.body["g-recaptcha-response"]}`,
       {
@@ -73,11 +77,14 @@ module.exports.create = async (req, res, next) => {
         email: req.body.email,
       });
 
+      //Encrpt password using bcryptjs and store in database
       bcryptjs.hash(req.body.password, 10, (err, hashPassword) => {
         newUser.set("password", hashPassword);
         newUser.save();
         next();
       });
+
+      //call mailer function to send mail to notify user about successful registration
       userRegister_mailer.newUserRegister(newUser);
       req.flash("success", "User Register Successfully");
       return res.redirect("/login");
@@ -93,6 +100,7 @@ module.exports.create = async (req, res, next) => {
   }
 };
 
+//create login session
 module.exports.createSession = (req, res) => {
   req.flash("success", "Login Successfully");
   return res.redirect("/home");
@@ -130,6 +138,7 @@ module.exports.createNewPassword = async (req, res, next) => {
   }
 };
 
+//Logout functionaliy
 module.exports.logout = (req, res) => {
   req.logout(req.user, (err) => {
     if (err) return next(err);

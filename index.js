@@ -4,9 +4,11 @@ const app = express();
 const expressLayouts = require("express-ejs-layouts");
 const session = require("express-session");
 const passport = require("passport");
+//Authentication using passport js
 const passportLocal = require("./config/passport-local-strategy");
 const passportGoogle = require("./config/passport-google-oauth2-strategy");
 const MongoStore = require("connect-mongo");
+//Flash messages 
 const flash = require("connect-flash");
 const customMware = require("./config/middleware");
 
@@ -24,6 +26,7 @@ app.set("layout extractStyles", true);
 app.set("layout extractScripts", true);
 app.set("view engine", "ejs");
 app.set("views", "./views");
+
 
 app.use(
   session({
@@ -47,6 +50,7 @@ app.use(
   })
 );
 
+//Use passport js
 app.use(passport.initialize());
 app.use(passport.session());
 

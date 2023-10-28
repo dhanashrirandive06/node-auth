@@ -1,7 +1,7 @@
 const nodeMailer = require("../config/nodemailer");
 
-//thsi is another way of exporting method
 
+//functionality to send mails
 exports.newUserRegister = (user) => {
   let htmlString = nodeMailer.renderTemplate(
     { user: user },

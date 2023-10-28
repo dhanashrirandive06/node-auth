@@ -3,10 +3,10 @@ const router = express.Router();
 const passport = require("passport");
 const UserController = require("../controllers/UserController");
 
+//Get methods
 router.get("/", UserController.register);
 router.get("/login", UserController.login);
 router.get("/home", passport.checkAuthentication, UserController.home);
-router.get("/forgotpassword", UserController.forgotpassword);
 router.get("/resetPassword", UserController.resetPassword);
 router.get("/logout", UserController.logout);
 

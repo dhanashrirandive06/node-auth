@@ -1,11 +1,10 @@
+/* Body Css */
 body {
   margin: 0;
   padding: 0;
-  /* min-height: 100vh; */
 }
 
 /* Navbar Css */
-
 .navbar {
   padding: 1rem 2rem !important;
   width: 100%;
@@ -59,7 +58,7 @@ body {
   text-align: center;
 }
 
-/* Media Queries */
+/* Media Queries For responsive*/
 
 @media (max-width: 992px) {
   .register_form {
